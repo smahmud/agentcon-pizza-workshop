@@ -13,9 +13,12 @@ project_client = AIProjectClient(
 
 agent = project_client.agents.create_agent(
     model="gpt-4o",
-    name="my-agent"
+    name="my-agent",
+    instructions=open("instructions.txt").read(),
+    top_p=0.75,
+    temperature=0.7,
 )
-print(f"Created agent, ID: {agent.id}")
+print(f"Created agent with system prompt, ID: {agent.id}")
 
 thread = project_client.agents.threads.create()
 print(f"Created thread, ID: {thread.id}")
